@@ -1,0 +1,69 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    /
+      Basic Page Needs
+      \==================================================
+    %meta{:charset => "utf-8"}/
+    %title Vulnerable Web-App
+    /
+      CSS
+      \==================================================
+    %link{:href => "/css/zerogrid.css", :rel => "stylesheet"}/
+    %link{:href => "/css/style.css", :rel => "stylesheet"}/
+    %link{:href => "/css/lightbox.css", :rel => "stylesheet"}/
+    / Custom Fonts
+    %link{:href => "/font-awesome/css/font-awesome.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/menu.css", :rel => "stylesheet"}/
+    %script{:src => "/js/jquery1111.min.js", :type => "text/javascript"}
+    %script{:src => "/js/script.js"}
+  %body
+    .wrap-body
+      .header
+        #cssmenu.align-right
+          %ul
+            %li.active
+              %a{:href => "/index"}
+                %span Home
+            %li
+              %a{:href => "/server"}
+                %span Server Status
+            %li.last
+              %a{:href => "/login"}
+                %span Login
+      / ////////////////////////////////////Container
+      %section#container
+        .wrap-container
+          %section.content-box.box-1
+            .zerogrid
+              .wrap-box
+                / Start Box
+                .row
+                  %div
+                    .row
+                      .col-1-2
+                        %a{:href => "/index"}
+                          %img{:src => "/images/abc.png", :width => "700"}/
+                      .col-1-2
+                        %form#form-container.f-right{:action => "/search"}
+                          / <input type="submit" id="searchsubmit" value="" />
+                          %a.search-submit-button{:href => "javascript:void(0)"}
+                            %i.fa.fa-search
+                          #searchtext
+                            %input#s{:name => "q", :placeholder => "Search Something...", :type => "text"}/
+          %h1
+            Upload Wallpaper
+          %form{:action => "/upload", :enctype => "multipart/form-data", :method => "post"}
+            File:
+            %input{:name => "file", :type => "file"}/
+            %br/
+            %br/
+            %input{:type => "submit", :value => "upload"}/
+          %ul
+            %li
+              %a{:href => "/read?file=car"} History of Cars
+            %li
+              %a{:href => "/read?file=cycle"} History of Cycles
+            %li
+              %a{:href => "/read?file=bike"} History of Bike
