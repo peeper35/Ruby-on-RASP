@@ -1,5 +1,6 @@
 require './controller'
 require 'haml'
+require './patch'
 
 class PatchedApplication < ApplicationController
 
@@ -38,7 +39,7 @@ class PatchedApplication < ApplicationController
 	end
 
 	get '/search' do
-		@escapedsearchquery = params[:q]
+		@search_query = Patch.new.patchxss(params[:q])
 		
 		haml :search
 	end
