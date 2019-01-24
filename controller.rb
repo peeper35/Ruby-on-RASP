@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-require './dm_setup'
 require 'sqlite3'
 
 class ApplicationController < Sinatra::Base
