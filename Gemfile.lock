@@ -65,6 +65,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
+    htmlentities (4.3.4)
     i18n (1.2.0)
       concurrent-ruby (~> 1.0)
     json (1.8.6)
@@ -105,9 +106,10 @@ DEPENDENCIES
   data_mapper
   dm-sqlite-adapter
   haml
+  htmlentities
   sinatra
   sinatra-contrib
   sqlite3
 
 BUNDLED WITH
-   1.16.3
+   1.16.6
