@@ -1,4 +1,4 @@
-Dir.glob('./*rb').each {|file| require file}
+require './vulnerable_app'
 require 'sinatra/base'
 
 run Application
