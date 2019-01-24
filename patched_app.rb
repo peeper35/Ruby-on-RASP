@@ -1,7 +1,7 @@
 require './controller'
 require 'haml'
 
-class Application < ApplicationController
+class PatchedApplication < ApplicationController
 
   	['/', '/index'].each do |path|
 		get path  do 
@@ -38,7 +38,7 @@ class Application < ApplicationController
 	end
 
 	get '/search' do
-		@search_query = params[:q]
+		@escapedsearchquery = params[:q]
 		
 		haml :search
 	end
