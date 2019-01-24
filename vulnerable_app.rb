@@ -21,7 +21,7 @@ class Application < ApplicationController
 	end	
 
 	get '/read' do 
-		self.readfile(params[:file])
+		readfile(params[:file])
 	end
 
 	get '/server' do
