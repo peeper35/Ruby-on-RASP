@@ -70,6 +70,7 @@ GEM
       concurrent-ruby (~> 1.0)
     json (1.8.6)
     json_pure (1.8.6)
+    lexeme (0.0.6)
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.3)
@@ -107,9 +108,10 @@ DEPENDENCIES
   dm-sqlite-adapter
   haml
   htmlentities
+  lexeme
   sinatra
   sinatra-contrib
   sqlite3
 
 BUNDLED WITH
-   1.16.6
+   2.0.1
