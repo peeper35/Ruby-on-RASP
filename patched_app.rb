@@ -10,6 +10,11 @@ class PatchedApplication < ApplicationController
  		end
  	end
 
+    not_found do
+     status 404
+     haml :notfound
+    end
+
 	post '/upload' do
 		@filename = params[:file][:filename]
 		file = params[:file][:tempfile]
