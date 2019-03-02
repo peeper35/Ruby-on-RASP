@@ -1,28 +1,28 @@
-require 'dm-core'
-require 'dm-migrations'
-require 'dm-sqlite-adapter'
+require 'sqlite3'
 
 
-DataMapper.setup :default, "sqlite://#{Dir.pwd}/logindata.db"
+db = SQLite3::Database.new("logindata.db")
 
-class Logins
-	include DataMapper::Resource
+rows = db.execute <<-SQL
+  create table logins (
+    username varchar(30),
+    password varchar(30)
+  );
+SQL
 
-	property :id, 		 Serial
-	property :username,  String
-	property :password,  String
+{
+  "Sahil" => "Sahil",
+  "admin" => "admin",
+  "elliot" => "qwerty",
+  "user1" => "ih8uall",
+  "dinesh" => "iamnotindian",
+  "rick" => "dubdub"   
+}.each do |pair|
+  db.execute "insert into logins values ( ?, ? )", pair
 end
 
+db.execute( "select * from logins") do |row|
+  p row
+end
 
-DataMapper.auto_upgrade!
-DataMapper.auto_migrate!
-
-#use these usernames and passwords at /login.
-
-Logins.create username: "Sahil", password: "Sahil"
-Logins.create username: "admin", password: "admin"
-Logins.create username: "elliot", password: "qwerty"
-Logins.create username: "user1", password: "ih8uall"
-Logins.create username: "dinesh", password: "iamnotindian"
-Logins.create username: "rick", password: "dubdub"
-
+puts "\nDatabase Created!"
