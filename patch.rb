@@ -5,7 +5,7 @@ require './lexer'
 require './controller'
 
 
-class Patch
+class Patch < ApplicationController
 	def patchxss(sq)
 		encoder = HTMLEntities.new
 		encoder.encode(sq)	
