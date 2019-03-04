@@ -1,10 +1,7 @@
-require 'sinatra/base'
-require 'sinatra/reloader'
 require 'sqlite3'
+require './lexer'
 
-class ApplicationController < Sinatra::Base
-	register Sinatra::Reloader
-
+class ApplicationController
 	def readfile(fileloc)
 		fileopen = File.open("./read/#{fileloc}", 'r')
 		return fileopen
