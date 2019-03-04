@@ -1,7 +1,8 @@
+require 'sinatra/base'
 require './controller'
 require 'haml'
 
-class Application < ApplicationController
+class Application < Sinatra::Base
 
   	['/', '/index'].each do |path|
 		get path  do 
@@ -26,7 +27,7 @@ class Application < ApplicationController
 	end	
 
 	get '/read' do 
-		readfile(params[:file])
+		ApplicationController.new.readfile(params[:file])
 	end
 
 	get '/server' do
@@ -36,7 +37,7 @@ class Application < ApplicationController
 	end
 
 	post '/server' do
-		@msg = doping(params[:server])
+		@msg = ApplicationController.new.doping(params[:server])
 		@server = params[:server]
 		
 		haml :server
@@ -53,7 +54,7 @@ class Application < ApplicationController
 	end
 
 	post '/login' do
-		@app = self.checklogin("#{params[:username]}", "#{params[:password]}")
+		@app = ApplicationController.new.checklogin("#{params[:username]}", "#{params[:password]}")
 
 		haml :login
 	end
