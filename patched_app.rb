@@ -1,8 +1,9 @@
-require './controller'
+require 'sinatra/base'
 require 'haml'
+require './controller'
 require './patch'
 
-class PatchedApplication < ApplicationController
+class PatchedApplication < Sinatra::Base
 
   	['/', '/index'].each do |path|
 		get path  do 
@@ -27,7 +28,7 @@ class PatchedApplication < ApplicationController
 	end	
 
 	get '/read' do 
-		readfile(params[:file])
+		ApplicationController.new.readfile(params[:file])
 	end
 
 	get '/server' do
@@ -37,7 +38,7 @@ class PatchedApplication < ApplicationController
 	end
 
 	post '/server' do
-		@msg = doping(params[:server])
+		@msg = ApplicationController.new.doping(params[:server])
 		@server = params[:server]
 		
 		haml :server
@@ -54,8 +55,12 @@ class PatchedApplication < ApplicationController
 	end
 
 	post '/login' do
-		@app = self.checklogin("#{params[:username]}", "#{params[:password]}")
-
-		haml :login
+		@app = Patch.new.patchsqli(params[:username], params[:password])
+    
+        if @app == "ThisSpecifiedStringSQLi"
+            haml :rasp_sqli
+        else
+		    haml :login
+        end
 	end
 end
