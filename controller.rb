@@ -2,6 +2,7 @@ require 'sqlite3'
 require './lexer'
 
 class ApplicationController
+
 	def readfile(fileloc)
 		fileopen = File.open("./read/#{fileloc}", 'r')
 		return fileopen
