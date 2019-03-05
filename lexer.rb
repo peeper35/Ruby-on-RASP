@@ -14,6 +14,7 @@ class MyLexer < Lex::Lexer
     :SINGLEQ,
     :DOUBLEQ,
     :IP,
+    :DOMAIN,
     :STRING
   )
 
@@ -27,6 +28,7 @@ class MyLexer < Lex::Lexer
   rule(:OPERATOR,  /\*/)
   rule(:STRING,     /\A[_\$a-zA-Z][_\$0-9a-zA-Z]*/)
   rule(:IP, /(\d+(\.|$)){4}/)
+  rule(:DOMAIN, /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,7}$/)
 
   # SQL Keywords
 
