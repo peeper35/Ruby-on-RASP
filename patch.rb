@@ -36,7 +36,6 @@ class Patch < ApplicationController
         @ipp = ip
         lex = takein(@ipp)
             def check(lex, ip=@ipp)
-                puts lex
                 db = SQLite3::Database.open("./logindata.db")
                 data = db.execute("SELECT * FROM rce_rules WHERE rcerules ='" + lex + "'")
             
