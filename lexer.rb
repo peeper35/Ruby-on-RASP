@@ -14,11 +14,20 @@ class MyLexer < Lex::Lexer
     :SINGLEQ,
     :DOUBLEQ,
     :IP,
-    :DOMAIN,
+    :STOP,
+    :DBAR,
+    :BAR,
+    :DAND,
+    :AND,
     :STRING
   )
 
   rule(:PLUS,   /\+/)
+  rule(:STOP,   /\./)
+  rule(:DBAR,   /\A[||]*/)
+  rule(:BAR,   /\|/) 
+  rule(:DAND,   /\A[&&]*/)
+  rule(:AND, /\&/) 
   rule(:SINGLEQ,   /\'/)
   rule(:DOUBLEQ,   /\"/)
   rule(:EQUALS,   /\=/)
@@ -28,11 +37,10 @@ class MyLexer < Lex::Lexer
   rule(:OPERATOR,  /\*/)
   rule(:STRING,     /\A[_\$a-zA-Z][_\$0-9a-zA-Z]*/)
   rule(:IP, /(\d+(\.|$)){4}/)
-  rule(:DOMAIN, /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,7}$/)
 
   # SQL Keywords
 
-  rule(:KEYWORD, /\b(SELECT|FROM|AND|WHERE|UNION|SELECT|ORDER|BY|OR)\b/)
+  rule(:KEYWORD, /\b(SELECT|FROM|AND|WHERE)\b/)
  
 
 
