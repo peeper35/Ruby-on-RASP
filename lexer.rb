@@ -13,6 +13,7 @@ class MyLexer < Lex::Lexer
     :SEMIC,
     :SINGLEQ,
     :DOUBLEQ,
+    :IP,
     :STRING
   )
 
@@ -25,10 +26,11 @@ class MyLexer < Lex::Lexer
   rule(:WHITESPACE,  /\s/)
   rule(:OPERATOR,  /\*/)
   rule(:STRING,     /\A[_\$a-zA-Z][_\$0-9a-zA-Z]*/)
+  rule(:IP, /(\d+(\.|$)){4}/)
 
   # SQL Keywords
 
-  rule(:KEYWORD, /\b(SELECT|FROM|AND|WHERE)\b/)
+  rule(:KEYWORD, /\b(SELECT|FROM|AND|WHERE|UNION|SELECT|ORDER|BY|OR)\b/)
  
 
 
