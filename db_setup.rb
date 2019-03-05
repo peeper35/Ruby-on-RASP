@@ -1,4 +1,5 @@
 require 'sqlite3'
+require 'colorize'
 
 
 db = SQLite3::Database.new("logindata.db")
@@ -21,12 +22,11 @@ SQL
   db.execute "insert into logins values ( ?, ? )", pair
 end
 
-db.execute( "select * from logins") do |row|
+db.execute("select * from logins") do |row|
   p row
 end
 
-puts "\nDatabase Created!"
-
+puts "\nDatabase Created!\n".colorize(:green)
 
 
 rows = db.execute <<-SQL
@@ -43,4 +43,27 @@ db.execute("select * from sqli_rules") do |row|
   p row
 end
 
-puts "\nSQLi Rule Added!"
+puts "\nSQLi Rule Added!\n".colorize(:green)
+
+
+rows = db.execute <<-SQL
+  create table rce_rules (
+    rcerules varchar(1000)
+  );
+SQL
+
+rce1 = "[[IP]]"
+rce2 = "[[STRING], [STOP], [STRING]]"
+rce3 = "[[STRING], [STOP], [STRING], [STOP], [STRING]]"
+rce4 = "[[STRING]]"
+
+db.execute "insert into rce_rules ( rcerules ) values ( ? )", [rce1]
+db.execute "insert into rce_rules ( rcerules ) values ( ? )", [rce2]
+db.execute "insert into rce_rules ( rcerules ) values ( ? )", [rce3]
+db.execute "insert into rce_rules ( rcerules ) values ( ? )", [rce4]
+
+db.execute("select * from rce_rules") do |row|
+  p row
+end
+
+puts "\nRCE Rules Added!\n".colorize(:green)
