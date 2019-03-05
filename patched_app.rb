@@ -4,17 +4,11 @@ require './controller'
 require './patch'
 
 class PatchedApplication < Sinatra::Base
-
   	['/', '/index'].each do |path|
 		get path  do 
 			haml :index
  		end
  	end
-
-    not_found do
-     status 404
-     haml :notfound
-    end
 
 	post '/upload' do
 		@filename = params[:file][:filename]
@@ -38,10 +32,14 @@ class PatchedApplication < Sinatra::Base
 	end
 
 	post '/server' do
-		@msg = ApplicationController.new.doping(params[:server])
+		@msg = Patch.new.patchrce(params[:server])
 		@server = params[:server]
 		
-		haml :server
+        if @msg == "ThisSpecifiedStringRCE"
+            haml :rasp_rce
+        else
+		    haml :server
+        end
 	end
 
 	get '/search' do
@@ -56,7 +54,7 @@ class PatchedApplication < Sinatra::Base
 
 	post '/login' do
 		@app = Patch.new.patchsqli(params[:username], params[:password])
-    
+        
         if @app == "ThisSpecifiedStringSQLi"
             haml :rasp_sqli
         else
