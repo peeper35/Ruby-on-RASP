@@ -36,7 +36,7 @@ class PatchedApplication < Sinatra::Base
 		@server = params[:server]
 		
         if @msg == "ThisSpecifiedStringRCE"
-            haml :rasp_rce
+            haml :rasp_cmdi
         else
 		    haml :server
         end
