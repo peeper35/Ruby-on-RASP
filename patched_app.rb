@@ -26,7 +26,13 @@ class PatchedApplication < Sinatra::Base
 	end	
 
 	get '/read' do 
-		ApplicationController.new.readfile(params[:file])
+		@read = Patch.new.patchlfi(params[:file])
+
+		if @read == "FLIIIIII!!!"
+			haml :cantread
+		else
+			return @read
+		end
 	end
 
 	get '/server' do
