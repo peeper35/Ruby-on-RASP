@@ -11,14 +11,18 @@ class PatchedApplication < Sinatra::Base
  	end
 
 	post '/upload' do
-		@filename = params[:file][:filename]
+		filename = params[:file][:filename]
 		file = params[:file][:tempfile]
 
-		File.open("./public/uploads/#{@filename}", 'wb') do |f|
-			f.write(file.read)
-		end
 
-		haml :upload_successful
+		@getback = Patch.new.patchupload(filename, file)
+
+
+		if @getback == "SuchExtensionCanHurtMe"
+			haml :canhurt
+		else
+			haml :upload_successful
+		end
 	end	
 
 	get '/read' do 
@@ -62,3 +66,4 @@ class PatchedApplication < Sinatra::Base
         end
 	end
 end
+
