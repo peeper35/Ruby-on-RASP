@@ -51,7 +51,7 @@ class Patch < ApplicationController
     end
 
     def patchupload(filename, file)
-        if filename.end_with?("png", "jpg", "jpeg", "bmp")
+        if filename.end_with?("png", "jpg", "jpeg", "bmp", "mp4", "mp3", "mkv")
             File.open("./public/uploads/#{filename}", 'wb') do |f|
             f.write(file.read)
             end
