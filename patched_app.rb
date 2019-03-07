@@ -1,9 +1,10 @@
 require 'sinatra/base'
 require 'haml'
-require './controller'
 require './patch'
 
 class PatchedApplication < Sinatra::Base
+    patch = Patch.new
+
   	['/', '/index'].each do |path|
 		get path  do 
 			haml :index
@@ -15,7 +16,7 @@ class PatchedApplication < Sinatra::Base
 		file = params[:file][:tempfile]
 
 
-		@getback = Patch.new.patchupload(filename, file)
+		@getback = patch.patchupload(filename, file)
 
 
 		if @getback == "SuchExtensionCanHurtMe"
@@ -26,7 +27,7 @@ class PatchedApplication < Sinatra::Base
 	end	
 
 	get '/read' do 
-		@read = Patch.new.patchlfi(params[:file])
+		@read = patch.patchlfi(params[:file])
 
 		if @read == "FLIIIIII!!!"
 			haml :cantread
@@ -42,7 +43,7 @@ class PatchedApplication < Sinatra::Base
 	end
 
 	post '/server' do
-		@msg = Patch.new.patchrce(params[:server])
+		@msg = patch.patchrce(params[:server])
 		@server = params[:server]
 		
         if @msg == "ThisSpecifiedStringRCE"
@@ -53,7 +54,7 @@ class PatchedApplication < Sinatra::Base
 	end
 
 	get '/search' do
-		@search_query = Patch.new.patchxss(params[:q])
+		@search_query = patch.patchxss(params[:q])
 		
 		haml :search
 	end
@@ -63,7 +64,7 @@ class PatchedApplication < Sinatra::Base
 	end
 
 	post '/login' do
-		@app = Patch.new.patchsqli(params[:username], params[:password])
+		@app = patch.patchsqli(params[:username], params[:password])
         
         if @app == "ThisSpecifiedStringSQLi"
             haml :rasp_sqli
