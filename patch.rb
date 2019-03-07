@@ -49,6 +49,25 @@ class Patch < ApplicationController
             end
         check(lex)
     end
+
+    def patchupload(filename, file)
+        if filename.end_with?("png", "jpg", "jpeg", "bmp")
+            File.open("./public/uploads/#{filename}", 'wb') do |f|
+            f.write(file.read)
+            end
+
+           return filename
+        elsif filename.end_with?("rb", "db", "exe", "sh")
+           return "SuchExtensionCanHurtMe"
+        else 
+            File.open("./public/uploads/not_a_shell.txt", 'wb') do |f|
+            f.write(file.read)
+            end         
+
+           return "not_a_shell.txt"
+        end
+    end
 end
+
 
 
