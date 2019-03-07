@@ -51,7 +51,7 @@ class Patch < ApplicationController
     end
 
     def patchupload(filename, file)
-        if filename.end_with?("png", "jpg", "jpeg", "bmp", "mp4", "mp3", "mkv")
+        if filename.end_with?("png", "jpg", "jpeg", "bmp")
             File.open("./public/uploads/#{filename}", 'wb') do |f|
             f.write(file.read)
             end
@@ -66,6 +66,15 @@ class Patch < ApplicationController
 
            return "not_a_shell.txt"
         end
+    end
+
+    def patchlfi(file)
+       if ["bike", "car", "cycle"].include?(file)
+            fileopen = File.open("./read/#{file}", 'r')
+            return fileopen
+        else
+            return "FLIIIIII!!!"
+       end        
     end
 end
 
