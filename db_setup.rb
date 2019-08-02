@@ -12,11 +12,9 @@ rows = db.execute <<-SQL
 SQL
 
 {
-  "Sahil" => "Sahil",
+  "sahil" => "sahil",
   "admin" => "admin",
-  "elliot" => "qwerty",
   "user1" => "ih8uall",
-  "dinesh" => "iamnotindian",
   "rick" => "dubdub"   
 }.each do |pair|
   db.execute "insert into logins values ( ?, ? )", pair
