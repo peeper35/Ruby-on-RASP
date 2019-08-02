@@ -12,6 +12,10 @@ Later on, one friend of mine [Kaushal Parikh](https://github.com/kp625544) creat
 1. Install `ruby 2.4.5`, preferably use [rvm](https://rvm.io/) or [rbenv](https://github.com/rbenv/rbenv) for installing ruby. 
 2. `gem install bundler`
 3. `bundle install`
+4. `ruby db_setup.rb`
+
+If any error shows up while `bundle install` then install these packages: `sudo apt install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev libsqlite3-dev`
+
 
 ## Usage
 
