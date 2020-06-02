@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem 'lex', :require => 'lex', :git => 'https://github.com/isrsahilmk/customized-lex.git'
+gem 'lex', :require => 'lex', :git => 'https://github.com/peeper35/customized-lex.git'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'haml'
