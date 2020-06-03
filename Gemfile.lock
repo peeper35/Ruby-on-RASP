@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/isrsahilmk/customized-lex.git
+  remote: https://github.com/peeper35/customized-lex.git
   revision: b8c6dde7e92de2ab44977dab92e340470af1df22
   specs:
     lex (0.1.0)
@@ -62,4 +62,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
